@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Add new movie</h1>
+        <form method="post" enctype="multipart/form-data">
+            {{form.as_p}}
+            {% csrf_token %}
+            <input type="submit" value="submit">         
+        </form>
+
+        <h1>Movies</h1>
+        {% for m in movies %}
+        <img src="{{ m.movie_poster.url}}" height="200" width="400" alt="{{ m.movie_title}}">
+        <h4>{{m.movie_title}}</h4>
+        <p class="text-muted">{{m.release_year}} | {{m.director}}</p>
+        <p>{{m.movie_plot}}</p>
+        {% empty %}
+        <p><h2>No movie added</h2></p>
+        {% endfor %}
+    </body>
+</html>
+
